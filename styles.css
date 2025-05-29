@@ -7,7 +7,7 @@
   --color-cta-button-hover-bg: #588157;
   --color-nav-link-hover: #a3b18a;
   --color-hamburger-line: #fff; /* Was #fff, same as --color-white but kept for clarity */
-  --color-darker-bg: #282828; /* New alternate dark background */
+  --color-darker-bg: #192a16; /* New alternate dark background */
   --color-light-text: #f1f1f1; /* New light text color for dark backgrounds */
 }
 
@@ -55,17 +55,21 @@ nav#navbar {
   top: 0;
   left: 0;
   right: 0;
-  width: 100%;
+  /* width: 100%; */
   display: flex;
-  justify-content: center; /* Changed to center for the nav links */
+  justify-content: center; /* Default to center for nav-links */
   align-items: center;
-  padding: 20px 0;
-  z-index: 10001; /* Increased z-index */
+  padding: 10px 20px; /* Adjusted padding */
+  z-index: 10001;
   transition: background-color 0.3s ease-in-out;
-  /* background-color: transparent; by default, or remove if not needed */
+  /* position: relative; is implicit for fixed, needed for absolute children */
 }
 
 nav#navbar.scrolled {
+  background-color: var(--color-dark-green);
+}
+
+nav#navbar.menu-open-bg {
   background-color: var(--color-dark-green);
 }
 
@@ -192,13 +196,14 @@ nav#navbar.scrolled {
 
 @media (max-width: 768px) {
   nav#navbar {
-    justify-content: flex-end; /* Push hamburger to the right */
+    justify-content: flex-start; /* Align items to the start */
+    padding: 10px 20px; /* Consistent padding */
   }
 
   .nav-links {
     flex-direction: column;
     position: fixed;
-    top: 0;
+    top: 55px;
     left: 0; /* Anchor to the left */
     width: 100%; /* Full width */
     height: 100vh;
@@ -206,7 +211,7 @@ nav#navbar.scrolled {
       --color-cta-button-bg
     ); /* Matches cta-button and scrolled nav */
     padding: 20px;
-    padding-top: 80px;
+    padding-top: 40px;
     box-sizing: border-box;
     transform: translateX(100%); /* Start off-screen to the right */
     transition: transform 0.3s ease-in-out; /* Animate transform */
@@ -231,6 +236,7 @@ nav#navbar.scrolled {
 
   .hamburger-menu-button {
     display: flex; /* Show on mobile */
+    margin-left: auto; /* Push hamburger to the right */
   }
 
   /* Animation for hamburger to X */
@@ -244,6 +250,14 @@ nav#navbar.scrolled {
 
   .hamburger-menu-button.active .line:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
+  }
+
+  .nav-logo-link {
+    position: static; /* Back to static flow on mobile */
+    left: auto;
+    top: auto;
+    transform: none;
+    /* Opacity and visibility are still handled by .scrolled */
   }
 }
 
@@ -398,22 +412,26 @@ section img {
   }
 
   #menu .menu-items {
-    flex-direction: row;
-    justify-content: space-around; /* Space them out */
-    align-items: center; /* Vertically align */
-    gap: 30px; /* Gap between text and image */
+    /* flex-direction: row; REMOVED - will inherit column from mobile */
+    /* justify-content: center; REMOVED */
+    align-items: center; /* Ensure items are centered in the column */
+    gap: 30px; /* Gap between text and image, can be same as mobile or adjusted */
+    max-width: 1100px; /* Keep max-width for the container */
+    margin-left: auto; /* Center the container */
+    margin-right: auto; /* Center the container */
   }
 
   #menu .menu-items p {
-    flex-basis: 40%; /* Text takes about 40% */
-    text-align: left; /* Align text to the left for side-by-side layout */
-    max-width: 450px; /* Max width for text block */
-    margin-bottom: 0; /* Remove bottom margin if any from mobile */
+    /* align-self: start; REMOVED by user's request for column layout */
+    /* flex-basis: 40%; REMOVED */
+    text-align: center; /* Revert to center for stacked layout */
+    max-width: 600px; /* Match mobile or adjust as needed */
+    /* margin-bottom: 0; REMOVED */
   }
 
   #menu .menu-items img {
-    flex-basis: 55%; /* Image takes about 55% */
-    max-width: 500px; /* Max width for the image on desktop */
+    /* flex-basis: 55%; REMOVED */
+    max-width: 800px; /* Or adjust as needed for column layout, could be wider if desired */
     /* border style inherited from mobile */
   }
 
@@ -467,4 +485,31 @@ section img {
 #about p,
 #menu p {
   color: var(--color-light-text);
+}
+
+.nav-logo-link {
+  display: inline-block; /* Allows margin/padding and keeps it inline */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  position: absolute; /* Positioned absolutely on desktop */
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+nav#navbar.scrolled .nav-logo-link {
+  opacity: 1;
+  visibility: visible;
+}
+
+nav#navbar.menu-open-bg .nav-logo-link {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-favicon {
+  height: 40px; /* Adjust as needed */
+  width: auto;
+  display: block; /* To remove extra space below the image if it's treated as inline */
 }
