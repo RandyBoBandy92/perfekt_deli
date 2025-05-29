@@ -59,7 +59,7 @@ nav#navbar {
   display: flex;
   justify-content: center; /* Default to center for nav-links */
   align-items: center;
-  padding: 10px 20px; /* Adjusted padding */
+  padding: 20px;
   z-index: 10001;
   transition: background-color 0.3s ease-in-out;
   /* position: relative; is implicit for fixed, needed for absolute children */
