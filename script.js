@@ -50,23 +50,74 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Smooth scrolling for navigation links
+  // Smooth scrolling for navigation links (this is a duplicate of the one at the top, can be removed or consolidated)
+  // For now, keeping the original structure as much as possible and adding new logic separately.
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
-      document.querySelector(this.getAttribute("href")).scrollIntoView({
-        behavior: "smooth",
-      });
+      const targetElement = document.querySelector(this.getAttribute("href"));
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+        });
+      }
 
       // Close mobile menu if a link is clicked
-      if (navLinks.classList.contains("active")) {
+      if (navLinks && navLinks.classList.contains("active")) {
         navLinks.classList.remove("active");
-        hamburger.classList.remove("active");
+        if (hamburger) {
+          hamburger.classList.remove("active");
+        }
         // Also remove the menu-open-bg class if navbar isn't scrolled
-        if (!navbar.classList.contains("scrolled")) {
+        if (navbar && !navbar.classList.contains("scrolled")) {
           navbar.classList.remove("menu-open-bg");
         }
       }
     });
   });
+}); // End of original DOMContentLoaded
+
+// Thumbnail Gallery Logic
+document.addEventListener("DOMContentLoaded", () => {
+  const mainImage = document.getElementById("mainMenuImage");
+  const thumbnails = document.querySelectorAll(".thumbnail-image");
+
+  if (mainImage && thumbnails.length > 0) {
+    // Set the first thumbnail as active initially
+    if (thumbnails[0]) {
+      thumbnails[0].classList.add("active-thumbnail");
+    }
+
+    let fadeTimeout; // To manage the timeout
+
+    thumbnails.forEach((thumbnail) => {
+      thumbnail.addEventListener("click", function () {
+        // Clear any existing fade timeout to prevent conflicts if user clicks rapidly
+        if (fadeTimeout) {
+          clearTimeout(fadeTimeout);
+        }
+
+        // If the clicked thumbnail is already active, do nothing
+        if (this.classList.contains("active-thumbnail")) {
+          // Optionally, you could still reset opacity if it was somehow set to 0
+          // mainImage.style.opacity = 1;
+          return;
+        }
+
+        mainImage.style.opacity = 0;
+
+        const clickedThumbnail = this; // Store context of the clicked thumbnail
+
+        fadeTimeout = setTimeout(() => {
+          mainImage.src = clickedThumbnail.dataset.image;
+          mainImage.alt = clickedThumbnail.alt; // Update alt text
+          mainImage.style.opacity = 1;
+        }, 300); // This duration should match the CSS transition time for opacity
+
+        // Update active thumbnail state
+        thumbnails.forEach((t) => t.classList.remove("active-thumbnail"));
+        clickedThumbnail.classList.add("active-thumbnail");
+      });
+    });
+  }
 });
