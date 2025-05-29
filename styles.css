@@ -328,11 +328,21 @@ section img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 20px; /* Add some space between paragraph and image on mobile */
 }
 
-#menu .menu-item img {
-  border: 3px solid var(--color-dark-green);
+#menu .menu-items p {
+  text-align: center; /* Ensure paragraph text is centered on mobile */
+  max-width: 600px; /* Constrain width for better readability */
+  color: var(
+    --color-light-text
+  ); /* Explicitly set from previous step, ensure it's still here */
+}
+
+#menu .menu-items img {
+  max-width: 100%; /* Ensure image is responsive */
+  height: auto;
+  border: 3px solid var(--color-dark-green); /* Existing border, might want to keep or remove */
 }
 
 /* Contact Section Enhancements */
@@ -385,18 +395,22 @@ section img {
 
   #menu .menu-items {
     flex-direction: row;
-    justify-content: space-around; /* Distribute items nicely */
-    align-items: flex-start; /* Align items to the top */
+    justify-content: space-around; /* Space them out */
+    align-items: center; /* Vertically align */
+    gap: 30px; /* Gap between text and image */
   }
 
-  #menu .menu-item {
-    flex-basis: calc(50% - 20px); /* Two items per row with gap */
-    max-width: 400px;
+  #menu .menu-items p {
+    flex-basis: 40%; /* Text takes about 40% */
+    text-align: left; /* Align text to the left for side-by-side layout */
+    max-width: 450px; /* Max width for text block */
+    margin-bottom: 0; /* Remove bottom margin if any from mobile */
   }
 
-  #menu .menu-item p {
-    /* For the text content */
-    margin-left: 0; /* reset for flex */
+  #menu .menu-items img {
+    flex-basis: 55%; /* Image takes about 55% */
+    max-width: 500px; /* Max width for the image on desktop */
+    /* border style inherited from mobile */
   }
 
   #contact .contact-container {
