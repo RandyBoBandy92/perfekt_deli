@@ -81,6 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const mainImage = document.getElementById("mainMenuImage");
   const thumbnails = document.querySelectorAll(".thumbnail-image");
+  let slideshowInterval; // Variable to store the interval ID
+  let currentThumbnailIndex = 0; // To keep track of the current image in the slideshow
+  let userInteracted = false; // Flag to track user interaction
 
   if (mainImage && thumbnails.length > 0) {
     // Set the first thumbnail as active initially
@@ -88,36 +91,58 @@ document.addEventListener("DOMContentLoaded", () => {
       thumbnails[0].classList.add("active-thumbnail");
     }
 
-    let fadeTimeout; // To manage the timeout
+    let fadeTimeout; // To manage the timeout for manual clicks
 
-    thumbnails.forEach((thumbnail) => {
+    function showImage(index) {
+      if (index < 0 || index >= thumbnails.length) return;
+      const thumbnail = thumbnails[index];
+
+      mainImage.style.opacity = 0;
+
+      // Use a local timeout for this specific image change, separate from user click fadeTimeout
+      const imageChangeTimeout = setTimeout(() => {
+        mainImage.src = thumbnail.dataset.image;
+        mainImage.alt = thumbnail.alt;
+        mainImage.style.opacity = 1;
+      }, 300); // CSS transition time
+
+      thumbnails.forEach((t) => t.classList.remove("active-thumbnail"));
+      thumbnail.classList.add("active-thumbnail");
+      currentThumbnailIndex = index;
+    }
+
+    function startSlideshow() {
+      if (userInteracted) return; // Don't start if user has already interacted
+
+      slideshowInterval = setInterval(() => {
+        currentThumbnailIndex = (currentThumbnailIndex + 1) % thumbnails.length;
+        showImage(currentThumbnailIndex);
+      }, 5000); // Change image every 5 seconds
+    }
+
+    function stopSlideshow() {
+      clearInterval(slideshowInterval);
+      userInteracted = true; // Set flag so slideshow doesn't restart
+    }
+
+    thumbnails.forEach((thumbnail, index) => {
       thumbnail.addEventListener("click", function () {
-        // Clear any existing fade timeout to prevent conflicts if user clicks rapidly
+        stopSlideshow(); // Stop slideshow on user interaction
+
+        // Clear any existing fade timeout from manual clicks to prevent conflicts
         if (fadeTimeout) {
           clearTimeout(fadeTimeout);
         }
 
-        // If the clicked thumbnail is already active, do nothing
         if (this.classList.contains("active-thumbnail")) {
-          // Optionally, you could still reset opacity if it was somehow set to 0
-          // mainImage.style.opacity = 1;
           return;
         }
 
-        mainImage.style.opacity = 0;
-
-        const clickedThumbnail = this; // Store context of the clicked thumbnail
-
-        fadeTimeout = setTimeout(() => {
-          mainImage.src = clickedThumbnail.dataset.image;
-          mainImage.alt = clickedThumbnail.alt; // Update alt text
-          mainImage.style.opacity = 1;
-        }, 300); // This duration should match the CSS transition time for opacity
-
-        // Update active thumbnail state
-        thumbnails.forEach((t) => t.classList.remove("active-thumbnail"));
-        clickedThumbnail.classList.add("active-thumbnail");
+        // Show clicked image immediately (which also updates currentThumbnailIndex)
+        showImage(index);
       });
     });
+
+    startSlideshow(); // Start the slideshow initially
   }
 });
