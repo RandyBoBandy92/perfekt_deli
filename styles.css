@@ -380,7 +380,7 @@ section img {
   max-width: 600px; /* Constrain width for better readability */
   color: var(
     --color-light-text
-  ); /* Explicitly set from previous step, ensure it's still here */
+  ); /* Explicitly set from previous step, ensure it\'s still here */
 }
 
 /* Static Chalk Menu Image */
@@ -402,9 +402,9 @@ section img {
   gap: 15px; /* Adjusted gap */
   width: 100%;
   background-color: var(--color-dark-green); /* Added background color */
-  padding: 40px 20px; /* Added padding */
-  border-radius: 15px; /* Added border radius */
-  box-sizing: border-box; /* Ensure padding doesn't expand width beyond 100% */
+  padding: 40px 20px; /* User updated padding */
+  border-radius: 15px; /* User updated border radius */
+  box-sizing: border-box; /* Ensure padding doesn\'t expand width beyond 100% */
 }
 
 .main-image-container {
@@ -488,7 +488,7 @@ section img {
   }
 
   #about .about-content img {
-    flex: 0 0 40%; /* Image takes up 40% width, doesn't grow or shrink */
+    flex: 0 0 40%; /* Image takes up 40% width, doesn\'t grow or shrink */
     max-width: 400px; /* Max width for the image */
     margin-right: 30px; /* Space between image and text */
     margin-bottom: 0;
@@ -514,18 +514,19 @@ section img {
   }
 
   #menu .menu-items p {
-    /* align-self: start; REMOVED by user's request for column layout */
+    /* align-self: start; REMOVED by user\'s request for column layout */
     /* flex-basis: 40%; REMOVED */
     text-align: center; /* Revert to center for stacked layout */
     max-width: 600px; /* Match mobile or adjust as needed */
     /* margin-bottom: 0; REMOVED */
   }
 
-  #menu .menu-items img {
-    /* flex-basis: 55%; REMOVED */
-    max-width: 800px; /* Or adjust as needed for column layout, could be wider if desired */
-    /* border style inherited from mobile */
-  }
+  /* This rule was targeting all images within .menu-items, including the static one.
+     It's now more specific to the static chalk menu or handled by gallery styles.
+     If specific styling for a generic img tag within .menu-items is still needed (outside the gallery/static menu),
+     it would need to be re-added with care. For now, it's removed to avoid conflict.
+  */
+  /* #menu .menu-items img { ... } */
 
   #contact .contact-container {
     flex-direction: row;
@@ -599,7 +600,7 @@ section img {
 }
 
 /* #about p and #menu p rules are no longer strictly necessary if color cascades from section */
-/* but keeping them won't hurt and provides explicitness if needed */
+/* but keeping them won\'t hurt and provides explicitness if needed */
 #about p,
 #menu p {
   color: var(--color-light-text);
@@ -629,20 +630,5 @@ nav#navbar.menu-open-bg .nav-logo-link {
 .nav-favicon {
   height: 40px; /* Adjust as needed */
   width: auto;
-  display: block; /* To remove extra space below the image if it's treated as inline */
-}
-
-/* Thumbnail Gallery Desktop Adjustments */
-.thumbnail-gallery {
-  gap: 20px; /* Larger gap on desktop */
-}
-
-.main-image-container {
-  max-width: 700px; /* Larger main image on desktop */
-  height: 450px; /* Adjusted height for desktop */
-}
-
-.thumbnail-image {
-  width: 100px; /* Slightly larger thumbnails on desktop */
-  height: 100px;
+  display: block; /* To remove extra space below the image if it\'s treated as inline */
 }
