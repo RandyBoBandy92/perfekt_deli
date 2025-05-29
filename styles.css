@@ -289,7 +289,7 @@ nav#navbar.scrolled {
 /* General Section Styling */
 section {
   padding: 40px 20px;
-  text-align: center;
+  text-align: left;
 }
 
 section h2 {
@@ -331,8 +331,12 @@ section img {
   gap: 20px; /* Add some space between paragraph and image on mobile */
 }
 
+#menu h2 {
+  text-align: center;
+}
+
 #menu .menu-items p {
-  text-align: center; /* Ensure paragraph text is centered on mobile */
+  text-align: left; /* Ensure paragraph text is centered on mobile */
   max-width: 600px; /* Constrain width for better readability */
   color: var(
     --color-light-text
