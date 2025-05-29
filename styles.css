@@ -281,3 +281,163 @@ nav#navbar.scrolled {
   max-width: 100%;
   border-radius: 8px;
 }
+
+/* General Section Styling */
+section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: var(--color-dark-green);
+}
+
+section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+section img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* About Us Section */
+#about .about-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Menu Section */
+#menu .menu-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#menu .menu-item img {
+  border: 3px solid var(--color-dark-green);
+}
+
+/* Contact Section Enhancements */
+#contact .contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items on mobile */
+  gap: 30px;
+}
+
+.hours-of-operation {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Full width on mobile */
+  max-width: 450px; /* Max width for readability */
+  text-align: left;
+}
+
+.hours-of-operation h3 {
+  color: var(--color-dark-green);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.hours-of-operation p {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+#contact iframe {
+  width: 100%; /* Full width on mobile */
+  max-width: 600px; /* Max width for map */
+  height: 450px;
+  border-radius: 8px;
+  border: 0; /* Ensure no default border */
+}
+
+/* Tablet and Desktop Adjustments */
+@media (min-width: 769px) {
+  section {
+    padding: 60px 40px;
+  }
+
+  section h2 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+  }
+
+  #about .about-content {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  #about .about-content img {
+    flex: 0 0 40%; /* Image takes up 40% width, doesn't grow or shrink */
+    max-width: 400px; /* Max width for the image */
+    margin-right: 30px; /* Space between image and text */
+    margin-bottom: 0;
+  }
+
+  #about .about-content div {
+    /* For the text content */
+    flex: 1;
+  }
+  #about .about-content div p {
+    /* For the text content */
+    margin-left: 0;
+  }
+
+  #menu .menu-items {
+    flex-direction: row;
+    justify-content: space-around; /* Distribute items nicely */
+    align-items: flex-start; /* Align items to the top */
+  }
+
+  #menu .menu-item {
+    flex-basis: calc(50% - 20px); /* Two items per row with gap */
+    max-width: 400px;
+  }
+
+  #menu .menu-item p {
+    /* For the text content */
+    margin-left: 0; /* reset for flex */
+  }
+
+  #contact .contact-container {
+    flex-direction: row;
+    align-items: flex-start; /* Align items to the top */
+    justify-content: space-between; /* Push items to sides */
+  }
+
+  .hours-of-operation,
+  #contact iframe {
+    flex-basis: calc(
+      50% - 20px
+    ); /* Each takes roughly half the width minus gap */
+  }
+
+  .hours-of-operation {
+    max-width: none; /* Allow it to grow within its flex basis */
+    margin-left: 0; /* remove auto margins */
+    margin-right: 0;
+  }
+
+  #contact iframe {
+    max-width: none; /* Allow it to grow within its flex basis */
+    height: 450px; /* Maintain height */
+  }
+}
