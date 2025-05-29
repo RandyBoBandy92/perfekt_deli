@@ -7,6 +7,8 @@
   --color-cta-button-hover-bg: #588157;
   --color-nav-link-hover: #a3b18a;
   --color-hamburger-line: #fff; /* Was #fff, same as --color-white but kept for clarity */
+  --color-darker-bg: #282828; /* New alternate dark background */
+  --color-light-text: #f1f1f1; /* New light text color for dark backgrounds */
 }
 
 body {
@@ -261,19 +263,21 @@ nav#navbar.scrolled {
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%; /* Full width on mobile */
+  max-width: 450px; /* Max width for readability */
+  text-align: left;
+  color: #333; /* Ensure text inside hours-of-operation is dark */
 }
 
 .hours-of-operation h3 {
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--color-dark-green); /* Keep h3 dark green */
+  text-align: center;
 }
 
 .hours-of-operation p {
   margin-bottom: 0.5rem;
-  color: #555;
+  color: #555; /* Keep paragraph text dark */
   line-height: 1.6;
 }
 
@@ -337,28 +341,6 @@ section img {
   flex-direction: column;
   align-items: center; /* Center items on mobile */
   gap: 30px;
-}
-
-.hours-of-operation {
-  background-color: #f9f9f9;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%; /* Full width on mobile */
-  max-width: 450px; /* Max width for readability */
-  text-align: left;
-}
-
-.hours-of-operation h3 {
-  color: var(--color-dark-green);
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.hours-of-operation p {
-  color: #555;
-  line-height: 1.7;
-  margin-bottom: 0.75rem;
 }
 
 #contact iframe {
@@ -440,4 +422,31 @@ section img {
     max-width: none; /* Allow it to grow within its flex basis */
     height: 450px; /* Maintain height */
   }
+}
+
+/* Section Backgrounds and Text Colors */
+#about,
+#contact {
+  background-color: var(--color-dark-green);
+  color: var(--color-light-text); /* Set base text color for the section */
+}
+
+#menu {
+  background-color: var(--color-darker-bg);
+  color: var(--color-light-text); /* Set base text color for the section */
+}
+
+#about h2,
+#menu h2,
+#contact h2 {
+  color: var(
+    --color-light-text
+  ); /* Ensures headings are light if not inheriting properly */
+}
+
+/* #about p and #menu p rules are no longer strictly necessary if color cascades from section */
+/* but keeping them won't hurt and provides explicitness if needed */
+#about p,
+#menu p {
+  color: var(--color-light-text);
 }
