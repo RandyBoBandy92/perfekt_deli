@@ -303,6 +303,24 @@ nav#navbar.menu-open-bg {
   line-height: 1.6;
 }
 
+/* Styles for the phone number, now directly under Contact Us heading */
+.phone-number {
+  text-align: center; /* Center the phone number */
+  margin-bottom: 1.5rem; /* Space below the phone number */
+}
+
+.phone-number a {
+  color: var(--color-light-text); /* Match section text color */
+  text-decoration: none;
+  font-size: 1.2rem; /* Slightly larger font size */
+  transition: color 0.3s ease;
+}
+
+.phone-number a:hover {
+  color: var(--color-nav-link-hover); /* Hover color */
+  text-decoration: underline;
+}
+
 #contact iframe {
   max-width: 100%;
   border-radius: 8px;
