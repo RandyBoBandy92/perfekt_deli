@@ -57,7 +57,8 @@ nav#navbar.scrolled {
 }
 
 .logo img {
-  width: 100px; /* Default smaller logo size */
+  margin-top: 2rem;
+  width: 200px; /* Default smaller logo size */
   /* Adjust as needed */
   z-index: 2;
 }
@@ -65,7 +66,7 @@ nav#navbar.scrolled {
 .hero-content {
   /* Styles for the text and button will go here */
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 .hero-content h1 {
@@ -78,7 +79,7 @@ nav#navbar.scrolled {
 }
 
 .cta-button {
-  background-color: #3a5a40; /* Dark green */
+  background-color: #1c3319;
   color: white;
   padding: 15px 30px;
   border: none;
@@ -112,6 +113,7 @@ nav#navbar.scrolled {
     font-size: 4rem;
   }
   .logo img {
+    margin-top: 0;
     width: 350px;
   }
 }
@@ -143,4 +145,81 @@ nav#navbar.scrolled {
 
 .nav-links a:hover {
   color: #a3b18a; /* Lighter accent color for hover */
+}
+
+/* Hamburger Menu */
+.hamburger-menu-button {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around; /* Distribute lines evenly */
+  width: 30px; /* Fixed width */
+  height: 25px; /* Fixed height */
+  cursor: pointer;
+  padding: 5px; /* Adjusted padding */
+  text-decoration: none; /* Remove underline from link */
+  position: relative; /* For absolute positioning of lines if needed later */
+  z-index: 1001; /* Ensure it's above other elements */
+}
+
+.hamburger-menu-button .line {
+  display: block; /* Lines should be block elements */
+  width: 100%;
+  height: 3px;
+  background-color: #fff; /* Changed to white for better visibility on dark scrolled nav */
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  nav#navbar {
+    justify-content: flex-end; /* Push hamburger to the right */
+  }
+
+  .nav-links {
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    position: fixed; /* Fixed position for full-screen overlay effect */
+    top: 0;
+    right: -280px; /* Start off-screen to the right (adjust width as needed) */
+    width: 280px; /* Set a fixed width for the menu */
+    height: 100vh; /* Full viewport height */
+    left: auto; /* Unset left property */
+    background-color: #1c3319; /* New background color */
+    /* border-top: 1px solid #ddd; */ /* Removed border */
+    padding: 20px;
+    padding-top: 80px; /* Adjust to leave space for the navbar height */
+    box-sizing: border-box;
+    transition: right 0.3s ease-in-out; /* Animate the 'right' property */
+    z-index: 999; /* Below navbar (1000) and hamburger (1001) */
+  }
+
+  .nav-links.active {
+    display: flex;
+    right: 0; /* Slide into view */
+  }
+
+  .nav-links li {
+    text-align: left; /* Align text to the left for side menu */
+    margin: 15px 0; /* Adjusted margin */
+  }
+
+  .nav-links a {
+    color: white; /* Ensure link color is white */
+  }
+
+  .hamburger-menu-button {
+    display: flex; /* Show on mobile */
+  }
+
+  /* Animation for hamburger to X */
+  .hamburger-menu-button.active .line:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+
+  .hamburger-menu-button.active .line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-menu-button.active .line:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
 }
