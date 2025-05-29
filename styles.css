@@ -80,7 +80,7 @@ nav#navbar.menu-open-bg {
 
 .logo img {
   margin-top: 2rem;
-  width: 200px; /* Default smaller logo size */
+  width: 250px; /* Default smaller logo size */
   /* Adjust as needed */
   z-index: 2;
 }
