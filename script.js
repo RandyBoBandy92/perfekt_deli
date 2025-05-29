@@ -15,3 +15,13 @@ document.querySelectorAll('nav a[href^="#"]').forEach((anchor) => {
     }
   });
 });
+
+window.addEventListener("scroll", function () {
+  const navbar = document.getElementById("navbar");
+  if (window.scrollY > 50) {
+    // Adjust 50 to when you want the background to appear
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
+});

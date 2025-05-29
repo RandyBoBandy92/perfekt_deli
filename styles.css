@@ -33,13 +33,33 @@ header {
   top: 20px;
   width: 100%;
   display: flex;
-  justify-content: center;
-  z-index: 2;
+  justify-content: center; /* This will center the logo again */
+  z-index: 2; /* Ensure header is above overlay but below navbar if it had a bg initially */
+}
+
+nav#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Changed to center for the nav links */
+  align-items: center;
+  padding: 20px 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease-in-out;
+  /* background-color: transparent; by default, or remove if not needed */
+}
+
+nav#navbar.scrolled {
+  background-color: #1d3319;
 }
 
 .logo img {
-  width: 200px; /* Default smaller logo size */
+  width: 100px; /* Default smaller logo size */
   /* Adjust as needed */
+  z-index: 2;
 }
 
 .hero-content {
@@ -100,4 +120,27 @@ header {
   .hero-content h1 {
     font-size: 4.5rem;
   }
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+}
+
+.nav-links li {
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: bold; /* Making nav links bold */
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #a3b18a; /* Lighter accent color for hover */
 }
