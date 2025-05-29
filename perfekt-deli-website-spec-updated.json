@@ -1,0 +1,82 @@
+{
+  "project": {
+    "name": "Perfekt Deli Website",
+    "type": "static",
+    "languages": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "host": [
+      "Cloudflare Pages",
+      "GitHub Pages"
+    ],
+    "mobileFirst": true,
+    "localization": "en",
+    "designStrategy": {
+      "base": "minimal",
+      "branches": [
+        "rustic",
+        "vintage",
+        "bold"
+      ]
+    }
+  },
+  "business": {
+    "name": "Perfekt Deli",
+    "address": "42181 Yarrow Central Rd, Chilliwack, BC V2R 5E5",
+    "phone": "+1 604-823-0248",
+    "hours": {
+      "monday": "7:30 a.m. \u2013 5:30 p.m.",
+      "tuesday": "7:30 a.m. \u2013 5:30 p.m.",
+      "wednesday": "7:30 a.m. \u2013 5:30 p.m.",
+      "thursday": "7:30 a.m. \u2013 5:30 p.m.",
+      "friday": "7:30 a.m. \u2013 5:30 p.m.",
+      "saturday": "10:00 a.m. \u2013 4:00 p.m.",
+      "sunday": "Closed"
+    },
+    "social": {
+      "facebook": "https://www.facebook.com/perfektdeli/"
+    },
+    "features": {
+      "googleMapsEmbed": true,
+      "contactSection": true,
+      "menuPreview": false,
+      "testimonials": true,
+      "featuredProducts": true,
+      "heroBanner": true
+    }
+  },
+  "assets": {
+    "logo": "images/perfekt_deli_logo.png",
+    "favicon": "images/perfekt_deli_logo_no_bg.png",
+    "images": {
+      "hero": "images/perfekt_deli_exterior.jpg",
+      "interior": "images/perfekt_deli_int.jpg",
+      "productShots": [
+        "images/perfekt_deli_counter.jpg",
+        "images/perfekt_deli_sandwich.jpg",
+        "images/perfekt_deli_brownie.jpg",
+        "images/perfekt_deli_ext_2.jpg"
+      ]
+    }
+  },
+  "content": {
+    "tagline": "Handcrafted Sandwiches, Local Goods, European Flavour.",
+    "about": "Perfekt Deli is a family-owned delicatessen offering handcrafted sandwiches, European groceries, and locally made products. Located in the heart of Yarrow, we take pride in our quality, tradition, and community spirit.",
+    "testimonials": [
+      "Best sandwiches in town!",
+      "Love the local flowers and European treats.",
+      "A hidden gem in Yarrow with great service and charm."
+    ],
+    "contactText": "Come visit us or reach out by phone during our open hours."
+  },
+  "structure": [
+    "Hero Section",
+    "About Section",
+    "Featured Products",
+    "Testimonials",
+    "Visit Us (Google Maps + Hours)",
+    "Footer with contact, social, copyright"
+  ]
+}
