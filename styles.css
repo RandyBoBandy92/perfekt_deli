@@ -33,6 +33,7 @@ body {
   text-align: center;
   color: var(--color-white);
   position: relative;
+  filter: saturate(2);
 }
 
 .hero::before {
