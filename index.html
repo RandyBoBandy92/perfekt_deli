@@ -150,5 +150,17 @@
       </div>
     </section>
     <script src="script.js"></script>
+    <footer>
+      <div class="wrapper">
+        <p>
+          &copy; Perfekt Deli <span id="currentYear"></span>. Designed by
+          <a href="https://www.randygulak.com" target="_blank">Randy Gulak</a>
+        </p>
+      </div>
+    </footer>
+    <script>
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+    </script>
   </body>
 </html>
